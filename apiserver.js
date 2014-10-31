@@ -16,7 +16,8 @@ app.use(bodyParser.json());
 //connect to database
 var ProxyConfig = require(".app/modules/proxyconfdb");
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://ashishsjsu:ashishsjsu@novus.modulusmongo.net:27017/iQeg2igi");
+var dbURI = "mongodb://ashishsjsu:ashishsjsu@novus.modulusmongo.net:27017/iQeg2igi";
+mongoose.connect(dbURI);
 
 //Routes for our API
 var router = express.Router();
@@ -27,6 +28,14 @@ router.use(function(req, res, next){
 	next();
 });
 
+
+//terminate mongoose connection when app terminates
+process.on('SIGINT', function() {
+  mongoose.connection.close(function () {
+	    console.log('Disconnect mongoose connection on app termination');
+	    process.exit(0);
+	  });
+	});
 
 router.route('/simpleproxy')
 
