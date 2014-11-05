@@ -17,18 +17,20 @@ var simpleproxyserver;
 var loadbalancedserver;
 var targetarray;
 
-
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 //configure app to use bodyparser
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+
+app.all('*', function(req, res, next){
+
+	if (!req.get('Origin')) return next();
+	res.set('Access-Control-Allow-Origin', '*');
+	res.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE');
+	res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
+	if ('OPTIONS' == req.method) return res.send(200);
+	next();
+});
+
 
 app.use('/proxyserver', router);
 
