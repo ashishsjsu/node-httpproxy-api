@@ -8,7 +8,7 @@ var express = require('express'),
 	ejs = require('ejs'),
 	api = require('./routes/api');
 	path = require('path');
-
+	
 var port = process.env.port || 8080; 
 
 var routes = require('./routes/index');
@@ -22,14 +22,18 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//configure app to use CORS
+//configure app for cross-origin requests
+app.all('*', function(req, res, next){
 
-app.all(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+	console.log("In app all");
+	if (!req.get('Origin')) return next();
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
+	if ('OPTIONS' == req.method) return res.sendStatus(200);
+	next();
 });
+
 
 //Routes for our API
 var router = express.Router();

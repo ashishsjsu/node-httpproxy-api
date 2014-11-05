@@ -205,17 +205,21 @@ function updateProxy(event) {
     // Check and make sure errorCount's still at zero
     if(errorCount === 0) {
 
+         var purl = $('#updateProxy fieldset label#updateProxyURL').text();
+        alert("Updating to "+ purl);
+
         // If it is, compile all proxy info into one object
         var id = $('#proxyID').text()
         var newProxy = {
 
             'configid': id,
            // 'proxyurl': $('#updateProxy fieldset input#updateProxyURL').val(),
+            'proxyurl': $('#updateProxy fieldset label#updateProxyURL').text(),
             'targeturl': $('#updateProxy fieldset input#updateProxyTargetURL').val(),
             'latency': $('#updateProxy fieldset input#updateProxyLatency').val()
         }
 
-        // Use AJAX to post the object to our adduser service
+       
         $.ajax({
             type: 'PUT',
             data: newProxy,
@@ -372,7 +376,7 @@ function startProxyServer(){
              'latency' : $('#updateProxy fieldset input#updateProxyLatency').val()
          }
 
-        alert("in startProxyServer :" + "targeturl " + data.targeturl + "latency " + data.latency);
+        //alert("in startProxyServer :" + "targeturl " + data.targeturl + "latency " + data.latency);
 
 
         $.ajax({

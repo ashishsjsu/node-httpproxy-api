@@ -3,7 +3,8 @@ var httpProxy = require('http-proxy'),
  	http = require('http'),
   	express = require('express'),
   	app = express(),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    Client = require('node-rest-client').Client;
 
 
 var router = express.Router();
@@ -17,10 +18,16 @@ var simpleproxyserver;
 var loadbalancedserver;
 var targetarray;
 
+
+
+
+
 //configure app to use bodyparser
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
+
+//configure app for cross-origin requests
 app.all('*', function(req, res, next){
 
 	console.log("In app all");
@@ -28,7 +35,7 @@ app.all('*', function(req, res, next){
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE');
 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
-	if ('OPTIONS' == req.method) return res.send(200);
+	if ('OPTIONS' == req.method) return res.sendStatus(200);
 	next();
 });
 
@@ -71,11 +78,11 @@ router.route('/createproxy')
 
 		targeturl  = req.body.targeturl;
 		latency = req.body.latency;
-		//console.log("Parameters received: "+ targeturl + " " + latency);
+		
 		var portnumber = generatePortNumber();
 		createProxyServer(portnumber);
-		res.json({msg : "Proxyserver running on port " + portnumber, port : portnumber});
-		
+		//res.json({msg : "Proxyserver running on port " + portnumber, port : portnumber});
+		res.json({msg : "Proxyserver running on port " + portnumber, port: portnumber});
 	});
 
 
@@ -118,14 +125,24 @@ router.route('/createloadbalancer')
 	});
 
 
-router.route('/test')
-	.get(function(req, res){
-		res.json({msg : "Test passed"});
-	});
-
 app.listen(8006);
 console.log("Listening on 8006");
 
+
+
+function getProxyIP()
+{
+	var client = new Client();
+
+	console.log("In getProxyIP");
+
+	client.get('http://169.254.169.254/latest/meta-data/public-ipv4/', function(data, response){
+		console.log(data);
+
+		console.log(response);
+	});
+
+}
 
 
 var loadProxy = httpProxy.createProxy();
