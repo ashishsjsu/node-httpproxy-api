@@ -23,10 +23,11 @@ app.use(bodyParser.json());
 
 app.all('*', function(req, res, next){
 
+	console.log("In app all");
 	if (!req.get('Origin')) return next();
-	res.set('Access-Control-Allow-Origin', '*');
-	res.set('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE');
-	res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
 	if ('OPTIONS' == req.method) return res.send(200);
 	next();
 });
@@ -116,6 +117,11 @@ router.route('/createloadbalancer')
 
 	});
 
+
+router.route('/test')
+	.get(function(req, res){
+		res.json({msg : "Test passed"});
+	});
 
 app.listen(8006);
 console.log("Listening on 8006");
