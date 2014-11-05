@@ -48,7 +48,7 @@ function startLoadBalancing(event)
 	$.ajax({
 			type: "POST",
 			data: data,
-			url: 'http://localhost:8006/proxyserver/createloadbalancer',
+			url: 'http://54.183.158.108:8006/proxyserver/createloadbalancer',
 			dataType: JSON 
 
 	}).done(function(response){
