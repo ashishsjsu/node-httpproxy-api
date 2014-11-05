@@ -3,7 +3,7 @@
 "version"       : "0.1.0",
 "main"          : "app.js",
 "author"        :"Ashish Narkhede ashish12021@gmail.com",
-"scripts"       : {"start" : "node app.js"},
+"scripts"       : {"start" : "nodejs app.js"},
 "description"   : "An api to configure node-http-proxy",
 "dependencies"  : {
                     "express" : "~4.10.1",
