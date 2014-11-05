@@ -1,0 +1,110 @@
+<html>
+   <script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script>
+   <head>
+      <title>Node Http Proxy Server</title>
+      <link rel="stylesheet" href="/stylesheets/style.css">
+      <style type="text/css"></style>
+   </head>
+   <body>
+      <h1>Node Http Proxy Server</h1>
+      <h3>Simple Proxy Configuration</h3>
+      <!-- Wrapper-->
+
+      <input type="text" placeholder="userid" id="txtUser">
+      <br><br>
+      <button id="btnGo">Go</button>
+
+      <div id="wrapper">
+       
+         <!-- ADD PROXY-->
+        
+         <div id="addProxy">
+          <h2>Add Simple Proxy</h2>
+            <fieldset>
+            <table>
+           <!-- <tr>
+               <td>Proxy URL: </td>
+               <td><input id="inputProxyURL" type="text" placeholder="Proxy URL"></td>
+            </tr> -->
+            
+            <tr>
+               <td>Target URL:</td>
+               <td><input id="inputProxyTargetURL" type="text" placeholder="Target URL"></td>
+            </tr>
+            
+            <tr>
+               <td>Latency:</td>
+               <td><input id="inputLatency" type="text" placeholder="Latency"></td>
+            </tr>
+            </table>
+
+             <br><br><button id="btnAddProxy">Add Proxy</button>
+
+            </fieldset>
+         </div>
+         <!-- /ADD PROXY-->
+
+         <!-- PROXY INFO-->
+         <div id="proxyInfo">
+            <h2>Proxy Info Update</h2>
+            <div id="updateProxy">
+               <fieldset>
+                  <table>
+                  <tr>
+                  <td>
+                     <strong>Proxy ID:</strong>
+                  </td>
+                  <td>
+                     <span id="proxyID"></span>
+                  </td>
+                  </tr>
+                  <tr>
+                     <td>Proxy URL:</td> 
+                     <td>
+                     
+                        <label id="updateProxyURL"></label>
+                        <!--<input id="updateProxyURL" type="text" placeholder="Proxy URL" class="textBox"> -->
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Target URL: </td>
+                     <td><input id="updateProxyTargetURL" type="text" placeholder="Target URL" class="textBox"></td>
+                  </tr>
+                  <tr>
+                     <td>Latency: </td>
+                     <td><input id="updateProxyLatency" type="text" placeholder="Latency" class="textBox"></td>
+                  </tr>
+                  </table>
+                  </fieldset>
+
+                  <br>
+                  <button id="btnUpdateProxy">Update Proxy</button>
+                  <button id="btnStartProxy">Start Proxy</button>
+                  <button id="btnStopProxy">Stop Proxy</button>
+            </div>
+         </div>
+         <!-- /PROXY INFO-->
+            <!-- PROXY LIST-->
+         <div id="proxyList">
+            <h2>Proxy List</h2>
+            <table>
+               <thead>
+                  <tr>
+                     <th>Configuaration Id</th>
+                     <th>TargetURL</th>
+                     <th>Latency</th>
+                     <th>ProxyURL</th>
+                     <th>Delete?</th>
+                  </tr>
+               </thead>
+               <tbody>
+               </tbody>
+            </table>
+         </div>
+         <!-- /PROXY LIST-->
+         </div>
+      <!-- /WRAPPER-->
+
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script src="/javascripts/global.js"></script>
+   </body>
+</html>

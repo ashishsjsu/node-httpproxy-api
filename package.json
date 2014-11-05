@@ -1,19 +1,16 @@
 {
-	"name" : "node-http-proxy-api",
-	"version" : "1.0",
-	"main" : "apiserver.js",
-	"author" :"Ashish Narkhede ashish12021@gmail.com",
-	"description" : "An api to configure http-proxy",
-	"respository" : { 
-		"type" : "git",
-		"url" : "https://github.com/ashishsjsu/node-http-proxy-api"},
-	"dependencies" : {
-		"express" :  "~4.10.1",
-		"mongoose" : "~3.8.18",
-		"body-parser" : "~1.9.2",
-		"http-proxy" : "~1.6.0",
-		"crypto" : "~0.0.3"
-	},
-	"license" : "@ashishsjsu"
+"name"          : "node-http-proxy-api",
+"version"       : "0.1.0",
+"main"          : "app.js",
+"author"        :"Ashish Narkhede ashish12021@gmail.com",
+"scripts"       : {"start" : "node app.js"},
+"description"   : "An api to configure node-http-proxy",
+"dependencies"  : {
+                    "express" : "~4.10.1",
+                    "mongoose" : "~3.8.18",
+                    "body-parser" : "~1.9.2",
+                    "http-proxy" : "~1.6.0",
+                    "crypto" : "~0.0.3"
+                  },
+"license"       : "@CMPE273-Team26"
 }
-

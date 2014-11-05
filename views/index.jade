@@ -1,0 +1,64 @@
+extends layout
+
+block content
+    h1= title
+    p Simple Proxy Configuration
+
+    // Wrapper
+    #wrapper
+
+        // PROXY INFO
+        #proxyInfo
+            h2 Proxy Info Update
+            #updateProxy
+                fieldset
+                    strong Proxy ID:
+                    |  <span id='proxyID'></span>
+                    br
+                    br
+                    lable
+                    |  ProxyURL: 
+                    input#updateProxyURL(type='text', placeholder='Proxy URL')
+                    br
+                    br
+                    lable
+                    |  TargetURL: 
+                    input#updateProxyTargetURL(type='text', placeholder='Target URL')
+                    br
+                    br
+                    lable
+                    |  Latency: 
+                    input#updateProxyLatency(type='text', placeholder='Latency')
+                    br
+                    br
+                    button#btnUpdateProxy Update Proxy
+                    button#btnStartProxy Start Proxy
+                    button#btnStopProxy Stop Proxy
+        // /PROXY INFO
+
+        // PROXY LIST
+        h2 Proxy List
+        #proxyList
+            table
+                thead
+                    th ProxyURL
+                    th TargetURL
+                    th Latency
+                    th Delete?
+                tbody
+        // /PROXY LIST
+
+        // ADD PROXY
+        h2 Add Simple Proxy
+        #addProxy
+            fieldset
+                input#inputProxyURL(type='text', placeholder='Proxy URL')
+                br
+                input#inputProxyTargetURL(type='text', placeholder='Target URL')
+                br
+                input#inputLatency(type='text', placeholder='Latency') 
+                br
+                button#btnAddProxy Add Proxy
+        // /ADD PROXY
+
+    // /WRAPPER
