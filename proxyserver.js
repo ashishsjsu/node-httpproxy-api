@@ -2,7 +2,6 @@ var arguments = process.argv.splice(2);
 var httpProxy = require('http-proxy'),
  	http = require('http'),
   	express = require('express'),
-  	cors = require('cors'),
   	app = express(),
     bodyParser = require('body-parser');
 
@@ -19,8 +18,13 @@ var loadbalancedserver;
 var targetarray;
 
 
-//configure app to use CORS
-app.use(cors());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 //configure app to use bodyparser
 app.use(bodyParser.urlencoded({extended:true}));
