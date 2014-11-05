@@ -82,7 +82,7 @@ router.route('/createproxy')
 		var portnumber = generatePortNumber();
 		createProxyServer(portnumber);
 		//res.json({msg : "Proxyserver running on port " + portnumber, port : portnumber});
-		res.json({msg : "Proxyserver running on port " + portnumber, port: portnumber});
+		res.json({msg : "Proxyserver running on " + "54.183.158.108" + portnumber, port: "54.183.158.108" + portnumber});
 	});
 
 
